@@ -122,6 +122,5 @@ public class WebTablesTest {
         Assert.assertEquals(tableList.size(), tableSize);
 
         driver.quit();
-
     }
 }
