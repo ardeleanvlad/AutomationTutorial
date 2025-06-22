@@ -22,6 +22,8 @@ public class PracticeFormTest {
 
         driver.manage().window().maximize();
 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
         formsMenu.click();
 
