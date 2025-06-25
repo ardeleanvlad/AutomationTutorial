@@ -1,9 +1,11 @@
 package tests;
 
+import helperMethods.PageHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.io.File;
 import java.time.Duration;
@@ -12,17 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class PracticeFormTest {
-    public WebDriver driver;
+public class PracticeFormTest extends SharedData {
+
 
     @Test
     public void TestMethod() {
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com");
 
-        driver.manage().window().maximize();
+        PageHelper pageHelper = new PageHelper(driver);
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
         formsMenu.click();
@@ -71,8 +70,7 @@ public class PracticeFormTest {
 
         }
         //valorea pozitiva duce scrollul in jos,valoarea negativa duce scrollul in sus
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)", "");
+        pageHelper.scrollPage(0, 400);
 
         List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
         List<String> hobbyValue = Arrays.asList("Reading", "Sports");

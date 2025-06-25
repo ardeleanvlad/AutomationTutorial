@@ -5,23 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowsTest {
+public class WindowsTest extends SharedData {
 
-    public WebDriver driver;
+
 
     @Test
     public void TestMethod() {
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com");
-
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
         WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));

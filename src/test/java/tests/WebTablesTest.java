@@ -7,25 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.time.Duration;
 import java.util.List;
 
-public class WebTablesTest {
-    public WebDriver driver;
+public class WebTablesTest extends SharedData {
+
 
     @Test
     public void testMethod(){
-        //deschidem o instanta de Chrome
-        driver=new ChromeDriver();
 
-        //accesam o pagina specifica
-        driver.get("https://demoqa.com");
-
-        //facem browser-ul sa fie in modul maximize
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
         elementsMenu.click();
