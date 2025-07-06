@@ -1,5 +1,6 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,15 +19,17 @@ public class WindowsTest extends SharedData {
     @Test
     public void TestMethod() {
 
+        ElementHelper elementHelper = new ElementHelper(driver);
+
 
         WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertsMenu.click();
+        elementHelper.clickElement(alertsMenu);
 
         WebElement alertsSubMenu = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        alertsSubMenu.click();
+        elementHelper.clickElement(alertsSubMenu);
 
         WebElement newTabElement = driver.findElement(By.id("tabButton"));
-        newTabElement.click();
+        elementHelper.clickElement(newTabElement);
         System.out.println(driver.getCurrentUrl());
 
         List<String> tabsList = new ArrayList<>(driver.getWindowHandles());
@@ -41,7 +44,7 @@ public class WindowsTest extends SharedData {
         driver.navigate().to("https://demoqa.com/browser-windows");
 
         WebElement newWindowElement = driver.findElement(By.id("windowButton"));
-        newWindowElement.click();
+        elementHelper.clickElement(newWindowElement);
         System.out.println(driver.getCurrentUrl());
 
         List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
@@ -52,7 +55,5 @@ public class WindowsTest extends SharedData {
         driver.close();
         driver.switchTo().window(windowsList.get(0));
         System.out.println(driver.getCurrentUrl());
-
-        driver.quit();
     }
 }

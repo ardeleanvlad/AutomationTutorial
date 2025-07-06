@@ -1,5 +1,7 @@
 package tests;
 
+import helperMethods.ElementHelper;
+import helperMethods.FrameHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,27 +19,30 @@ public class FramesTest extends SharedData {
     public void AlertsTestMethod() {
 
 
+        ElementHelper elementHelper = new ElementHelper(driver);
+        FrameHelper frameHelper = new FrameHelper(driver);
+
+
         WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertsMenu.click();
+        elementHelper.clickElement(alertsMenu);
 
         WebElement framesElement = driver.findElement(By.xpath("//span[text()='Frames']"));
-        framesElement.click();
+        elementHelper.clickElement(framesElement);
 
-        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='frame1']")));
+        frameHelper.switchFrameByElement(driver.findElement(By.xpath("//iframe[@id='frame1']")));
+
 
         WebElement firstBlockElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(firstBlockElement.getText());
+        elementHelper.printTextElement(firstBlockElement);
 
-        driver.switchTo().parentFrame();
+        frameHelper.switchToParent();
 
-        driver.switchTo().frame("frame2");
+        frameHelper.switchFrameByString("frame2");
 
         WebElement secondBlockElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(secondBlockElement.getText());
+        elementHelper.printTextElement(secondBlockElement);
 
-        driver.switchTo().parentFrame();
-
-        driver.quit();
+        frameHelper.switchToParent();
 
     }
 }

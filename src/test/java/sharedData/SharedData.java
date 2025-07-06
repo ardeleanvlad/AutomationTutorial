@@ -27,5 +27,6 @@ public class SharedData {
 
     public void clearEnvironment(){
         driver.quit();
+
     }
 }

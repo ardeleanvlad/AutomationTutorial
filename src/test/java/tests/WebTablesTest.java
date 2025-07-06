@@ -1,5 +1,6 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,12 +19,14 @@ public class WebTablesTest extends SharedData {
     @Test
     public void testMethod(){
 
+        ElementHelper elementHelper = new ElementHelper(driver);
+
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementsMenu.click();
+        elementHelper.clickElement(elementsMenu);
 
         WebElement elementsSubMenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        elementsSubMenu.click();
+        elementHelper.clickElement(elementsSubMenu);
 
 
 
@@ -33,76 +36,82 @@ public class WebTablesTest extends SharedData {
 
         //identificam un element
         WebElement addElement=driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementHelper.clickElement(addElement);
 
         WebElement firstnameElement=driver.findElement(By.id("firstName"));
         String firstnameValue="Vlad";
-        firstnameElement.sendKeys(firstnameValue);
+        elementHelper.fillElement(firstnameElement,firstnameValue);
+
 
         WebElement lastnameElement=driver.findElement(By.id("lastName"));
         String lastnameValue="Ardelean";
-        lastnameElement.sendKeys(lastnameValue);
+        elementHelper.fillElement(lastnameElement, lastnameValue);
+
 
         WebElement emailElement=driver.findElement(By.id("userEmail"));
         String emailValue="test@test.com";
-        emailElement.sendKeys(emailValue);
+        elementHelper.fillElement(emailElement, emailValue);
+
 
         WebElement ageElement=driver.findElement(By.id("age"));
         String ageValue="27";
-        ageElement.sendKeys(ageValue);
+        elementHelper.fillElement(ageElement, ageValue);
+
 
         WebElement salaryElement=driver.findElement(By.id("salary"));
         String salaryValue="2500";
-        salaryElement.sendKeys(salaryValue);
+        elementHelper.fillElement(salaryElement, salaryValue);
+
 
         WebElement departmentElement=driver.findElement(By.id("department"));
         String departmentValue="financiar";
-        departmentElement.sendKeys(departmentValue);
+        elementHelper.fillElement(departmentElement, departmentValue);
+
 
         WebElement submitElement=driver.findElement(By.id("submit"));
-        submitElement.click();
+        elementHelper.clickElement(submitElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize +1);
 
         //edit functionality
         WebElement editElement=driver.findElement(By.id("edit-record-4"));
-        editElement.click();
+        elementHelper.clickElement(editElement);
 
         WebElement editFirstNameElement=driver.findElement(By.id("firstName"));
         String editFirstNameValue="Vlad";
         editFirstNameElement.clear();
-        editFirstNameElement.sendKeys(editFirstNameValue);
+        elementHelper.fillElement(editFirstNameElement, editFirstNameValue);
 
         WebElement editLastNameElement=driver.findElement(By.id("lastName"));
         String editLastNameValue="Ardelean";
         editLastNameElement.clear();
-        editLastNameElement.sendKeys(editLastNameValue);
+        elementHelper.fillElement(editLastNameElement, editLastNameValue);
 
         WebElement editUserEmailElement=driver.findElement(By.id("userEmail"));
         String editUserEmailValue="test@gmail.com";
         editUserEmailElement.clear();
-        editUserEmailElement.sendKeys(editUserEmailValue);
+        elementHelper.fillElement(editUserEmailElement, editUserEmailValue);
 
         WebElement editAgeElement=driver.findElement(By.id("age"));
         String editAgeValue="25";
         editAgeElement.clear();
-        editAgeElement.sendKeys(editAgeValue);
+        elementHelper.fillElement(editAgeElement, editAgeValue);
 
         WebElement editSalaryElement=driver.findElement(By.id("salary"));
         String editSalaryValue="2500";
         editSalaryElement.clear();
-        editSalaryElement.sendKeys(editSalaryValue);
+        elementHelper.fillElement(editSalaryElement, editSalaryValue);
 
         WebElement editDepartmentElement=driver.findElement(By.id("department"));
         String editDepartmentValue="Financial";
         editDepartmentElement.clear();
-        editDepartmentElement.sendKeys(editDepartmentValue);
+        elementHelper.fillElement(editDepartmentElement, editDepartmentValue);
 
         JavascriptExecutor executor = (JavascriptExecutor) driver;
 
         WebElement editLine = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", editLine);
+        elementHelper.clickJSElement(editLine);
 
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
@@ -111,11 +120,9 @@ public class WebTablesTest extends SharedData {
         //delete element
 
        WebElement deleteElement=driver.findElement(By.id("delete-record-4"));
-       deleteElement.click();
+       elementHelper.clickElement(deleteElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize);
-
-        driver.quit();
     }
 }

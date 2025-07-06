@@ -1,18 +1,15 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
 
 import java.io.File;
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class PracticeFormTest extends SharedData {
 
@@ -21,51 +18,50 @@ public class PracticeFormTest extends SharedData {
     public void TestMethod() {
 
         PageHelper pageHelper = new PageHelper(driver);
+        ElementHelper elementHelper = new ElementHelper(driver);
 
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        formsMenu.click();
+        elementHelper.clickElement(formsMenu);
 
         WebElement formsSubMenu = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        formsSubMenu.click();
-
-        //wait implicit = pui un timeframe de 10s , iar daca se computeaza in sub 10s nu asteapta toate cele 10s
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        elementHelper.clickElement(formsSubMenu);
 
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstnameValue = "Vladut";
-        firstNameElement.sendKeys(firstnameValue);
+        elementHelper.fillElement(firstNameElement,firstnameValue);
 
         WebElement lastNameElement = driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
         String lastNameValue = "Ardelean";
-        lastNameElement.sendKeys(lastNameValue);
+        elementHelper.fillElement(lastNameElement,lastNameValue);
 
         WebElement emailElement = driver.findElement(By.cssSelector("input[placeholder='name@example.com']"));
         String emailValue = "vardy@gmail.com";
-        emailElement.sendKeys(emailValue);
+        elementHelper.fillElement(emailElement,emailValue);
 
         WebElement phoneNumberElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
         String phoneNumberValue = "0454355665";
-        phoneNumberElement.sendKeys(phoneNumberValue);
+        elementHelper.fillElement(phoneNumberElement,phoneNumberValue);
 
         WebElement subjectsElement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectsValue = Arrays.asList("Accounting", "Arts", "Maths");
         for(int index = 0; index < subjectsValue.size(); index++) {
-            subjectsElement.sendKeys(subjectsValue.get(index));
-            subjectsElement.sendKeys(Keys.ENTER);
+            elementHelper.fillElement(subjectsElement, subjectsValue.get(index));
+            elementHelper.pressElement(subjectsElement,Keys.ENTER);
+
         }
 
         String genderValue = "Female";
         List<WebElement> genderElementList = driver.findElements(By.cssSelector("div[id='genterWrapper'] label[class='custom-control-label']"));
         switch (genderValue) {
             case "Male":
-                genderElementList.get(0).click();
+                elementHelper.clickElement(genderElementList.get(0));
                 break;
             case "Female":
-                genderElementList.get(1).click();
+                elementHelper.clickElement(genderElementList.get(1));
                 break;
             case "Other":
-                genderElementList.get(2).click();
+                elementHelper.clickElement(genderElementList.get(2));
                 break;
 
         }
@@ -76,36 +72,39 @@ public class PracticeFormTest extends SharedData {
         List<String> hobbyValue = Arrays.asList("Reading", "Sports");
         for (int index = 0; index < hobbiesElementList.size(); index++){
             if (hobbyValue.contains(hobbiesElementList.get(index).getText())) {
-                hobbiesElementList.get(index).click();
+                elementHelper.clickElement(hobbiesElementList.get(index));
             }
         }
 
         WebElement uploadElement = driver.findElement(By.id("uploadPicture"));
         String uploadValue = "src/test/resources/android hm portrait.JPEG";
         File file = new File(uploadValue);
-        uploadElement.sendKeys(file.getAbsolutePath());
+        elementHelper.fillElement(uploadElement,file.getAbsolutePath());
+
 
         WebElement currentAddressElement = driver.findElement(By.id("currentAddress"));
         String currentAddressValue = "Str Caprioarei nr. 15 , apt. 17";
-        currentAddressElement.sendKeys(currentAddressValue);
+        elementHelper.fillElement(currentAddressElement, currentAddressValue);
 
         JavascriptExecutor executor = (JavascriptExecutor) driver;
 
         WebElement stateElement = driver.findElement(By.id("state"));
-        executor.executeScript("arguments[0].click;", stateElement);
+        elementHelper.clickJSElement(stateElement);
 
         WebElement stateInputElement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "Uttar Pradesh";
-        stateInputElement.sendKeys(stateValue);
-        stateInputElement.sendKeys(Keys.ENTER);
+        elementHelper.fillElement(stateInputElement,stateValue);
+        elementHelper.pressElement(stateInputElement,Keys.ENTER);
+
 
         WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Agra";
-        cityInputElement.sendKeys(cityValue);
-        cityInputElement.sendKeys(Keys.ENTER);
+        elementHelper.fillElement(cityInputElement, cityValue);
+        elementHelper.pressElement(cityInputElement, Keys.ENTER);
+
 
         WebElement submitElement = driver.findElement(By.id("submit"));
-        submitElement.click();
+        elementHelper.clickElement(submitElement);
 
         List<WebElement> tableDescriptionList = driver.findElements(By.xpath("//table//td[1]"));
         List<WebElement> tableValueList = driver.findElements(By.xpath("//table//td[2]"));
@@ -122,9 +121,6 @@ public class PracticeFormTest extends SharedData {
 
         Assert.assertEquals(tableDescriptionList.get(3).getText(), "Mobile", "Mobile text is not displayed right in the table");
         Assert.assertEquals(tableValueList.get(3).getText(), phoneNumberValue, "Mobile text is not displayed right in the table");
-
-        driver.quit();
-
 
         }
 }
