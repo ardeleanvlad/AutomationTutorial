@@ -3,7 +3,6 @@ package tests;
 import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
 import org.openqa.selenium.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
 
@@ -46,9 +45,7 @@ public class PracticeFormTest extends SharedData {
         WebElement subjectsElement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectsValue = Arrays.asList("Accounting", "Arts", "Maths");
         for(int index = 0; index < subjectsValue.size(); index++) {
-            elementHelper.fillElement(subjectsElement, subjectsValue.get(index));
-            elementHelper.pressElement(subjectsElement,Keys.ENTER);
-
+            elementHelper.fillPressElement(subjectsElement, subjectsValue.get(index), Keys.ENTER);
         }
 
         String genderValue = "Female";
@@ -93,15 +90,13 @@ public class PracticeFormTest extends SharedData {
 
         WebElement stateInputElement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "Uttar Pradesh";
-        elementHelper.fillElement(stateInputElement,stateValue);
-        elementHelper.pressElement(stateInputElement,Keys.ENTER);
+        elementHelper.fillPressElement(stateInputElement,stateValue, Keys.ENTER);
+
 
 
         WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Agra";
-        elementHelper.fillElement(cityInputElement, cityValue);
-        elementHelper.pressElement(cityInputElement, Keys.ENTER);
-
+        elementHelper.fillPressElement(cityInputElement, cityValue, Keys.ENTER);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
         elementHelper.clickElement(submitElement);
@@ -109,18 +104,18 @@ public class PracticeFormTest extends SharedData {
         List<WebElement> tableDescriptionList = driver.findElements(By.xpath("//table//td[1]"));
         List<WebElement> tableValueList = driver.findElements(By.xpath("//table//td[2]"));
 
-        Assert.assertEquals(tableDescriptionList.get(0).getText(), "Student Name", "Student Name text is not displayed right in the table");
-        Assert.assertTrue(tableValueList.get(0).getText().contains(firstnameValue), "First name text is not displayed right in the table");
-        Assert.assertTrue(tableValueList.get(0).getText().contains(lastNameValue), "Last name text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
+       elementHelper.validateElementContainsText(tableValueList.get(0), firstNameElement.getText());
+        elementHelper.validateElementContainsText(tableValueList.get(0), lastNameElement.getText());
 
-        Assert.assertEquals(tableDescriptionList.get(1).getText(), "Student Email", "Student email text is not displayed right in the table");
-        Assert.assertEquals(tableValueList.get(1).getText(), emailValue, "Student email text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
+        elementHelper.validateElementEqualsText(tableValueList.get(1), emailValue);
 
-        Assert.assertEquals(tableDescriptionList.get(2).getText(), "Gender", "Gender text is not displayed right in the table");
-        Assert.assertEquals(tableValueList.get(2).getText(), genderValue, "Gender text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(2), "Gender");
+        elementHelper.validateElementEqualsText(tableValueList.get(2), genderValue);
 
-        Assert.assertEquals(tableDescriptionList.get(3).getText(), "Mobile", "Mobile text is not displayed right in the table");
-        Assert.assertEquals(tableValueList.get(3).getText(), phoneNumberValue, "Mobile text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(3), "Mobile");
+        elementHelper.validateElementEqualsText(tableValueList.get(3), phoneNumberValue);
 
         }
 }

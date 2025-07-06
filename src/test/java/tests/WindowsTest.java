@@ -1,16 +1,11 @@
 package tests;
 
 import helperMethods.ElementHelper;
+import helperMethods.TabHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WindowsTest extends SharedData {
 
@@ -20,6 +15,7 @@ public class WindowsTest extends SharedData {
     public void TestMethod() {
 
         ElementHelper elementHelper = new ElementHelper(driver);
+        TabHelper tabHelper = new TabHelper(driver);
 
 
         WebElement alertsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
@@ -32,28 +28,20 @@ public class WindowsTest extends SharedData {
         elementHelper.clickElement(newTabElement);
         System.out.println(driver.getCurrentUrl());
 
-        List<String> tabsList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabsList.get(1));
-        System.out.println(driver.getCurrentUrl());
+        tabHelper.switchToSpecificTab(1);
 
-        driver.close();
-        driver.switchTo().window(tabsList.get(0));
-        System.out.println(driver.getCurrentUrl());
+        tabHelper.closeCurrentTab();
+        tabHelper.switchToSpecificTab(0);
 
         //din cauza reclamei fortam site-ul sa acceseze un url specific
         driver.navigate().to("https://demoqa.com/browser-windows");
 
         WebElement newWindowElement = driver.findElement(By.id("windowButton"));
         elementHelper.clickElement(newWindowElement);
-        System.out.println(driver.getCurrentUrl());
 
-        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowsList.get(1));
 
-        System.out.println(driver.getCurrentUrl());
-
-        driver.close();
-        driver.switchTo().window(windowsList.get(0));
-        System.out.println(driver.getCurrentUrl());
+       tabHelper.switchToSpecificTab(1);
+       tabHelper.closeCurrentTab();
+       tabHelper.switchToSpecificTab(0);
     }
 }
