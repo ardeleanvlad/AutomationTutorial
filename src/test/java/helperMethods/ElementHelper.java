@@ -51,7 +51,6 @@ public class ElementHelper {
     public void validateListSize(List<WebElement> elementsList, int expectedSize){
         waitForVisibleList(elementsList);
         Assert.assertEquals(elementsList.size(), expectedSize, "Actual elements list size: "+ elementsList.size() +" is different than " + expectedSize);
-
     }
 
     public void validateElementContainsText(WebElement element, String expectedText){
