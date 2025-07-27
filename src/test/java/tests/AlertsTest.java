@@ -14,16 +14,16 @@ public class AlertsTest extends SharedData {
    @Test
     public void AlertsTestMethod(){
 
-      ElementHelper elementHelper = new ElementHelper(driver);
-      AlertHelper alertHelper = new AlertHelper(driver);
+      ElementHelper elementHelper = new ElementHelper(getDriver());
+      AlertHelper alertHelper = new AlertHelper(getDriver());
 
-    IndexPage indexPage = new IndexPage(driver);
+    IndexPage indexPage = new IndexPage(getDriver());
     indexPage.interactOnAlertsFrameWindowMenu();
 
-       AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
+       AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
        alertFrameWindowPage.interactWithAlertsSubMenu();
 
-       AlertPage alertPage = new AlertPage(driver);
+       AlertPage alertPage = new AlertPage(getDriver());
        alertPage.dealAlertOk();
        alertPage.dealAlertTimer();
        alertPage.dealAlertCancel();

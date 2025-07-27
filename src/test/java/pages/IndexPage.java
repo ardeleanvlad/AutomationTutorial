@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +11,11 @@ public class IndexPage extends BasePage{
     }
 
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
-    public WebElement alertsElement;
+    private WebElement alertsElement;
     @FindBy(xpath = "//h5[text()='Elements']")
-    public WebElement elementsMenu;
+    private WebElement elementsMenu;
     @FindBy(xpath = "//h5[text()='Forms']")
-    public WebElement formsMenu;
+    private WebElement formsMenu;
 
     public void interactOnAlertsFrameWindowMenu(){
         elementHelper.clickJSElement(alertsElement);

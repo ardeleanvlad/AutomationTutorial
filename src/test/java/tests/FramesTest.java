@@ -14,13 +14,13 @@ public class FramesTest extends SharedData {
     public void AlertsTestMethod() {
 
 
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactOnAlertsFrameWindowMenu();
 
-        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
         alertFrameWindowPage.interactWithFramesSubMenu();
 
-        FramesPage framesPage = new FramesPage(driver);
+        FramesPage framesPage = new FramesPage(getDriver());
         framesPage.dealWithBigIFrame();
         framesPage.dealWithLittleIFrame();
 

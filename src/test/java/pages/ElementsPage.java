@@ -13,7 +13,7 @@ public class ElementsPage extends BasePage{
     }
 
     @FindBy(xpath = "//span[text()='Web Tables']")
-    public WebElement elementsSubMenu;
+    private WebElement elementsSubMenu;
 
     public void interactWithWebTablesSubMenu(){
         elementHelper.clickElement(elementsSubMenu);

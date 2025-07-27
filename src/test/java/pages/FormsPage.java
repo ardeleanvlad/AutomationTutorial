@@ -12,7 +12,7 @@ public FormsPage(WebDriver driver){
 }
 
 @FindBy(xpath = "//span[text()='Practice Form']")
-    public WebElement formsSubMenu;
+    private WebElement formsSubMenu;
 
 public void interactWithPracticeFormSubMenu(){
   elementHelper.clickElement(formsSubMenu);

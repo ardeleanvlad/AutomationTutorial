@@ -16,10 +16,10 @@ public class PracticeFormTest extends SharedData {
     @Test
     public void TestMethod() {
 
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactWithFormsMenu();
 
-        FormsPage formsPage = new FormsPage(driver);
+        FormsPage formsPage = new FormsPage(getDriver());
          formsPage.interactWithPracticeFormSubMenu();
 
 
@@ -32,11 +32,11 @@ public class PracticeFormTest extends SharedData {
         List<String> hobbyValue = Arrays.asList("Sports", "Reading");
         String uploadValue = "src/test/resources/android hm portrait.JPEG";
         String currentAddressValue = "Str Caprioarei nr. 15 , apt. 17";
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
         String stateValue = "Uttar Pradesh";
         String cityValue = "Agra";
 
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+        PracticeFormPage practiceFormPage = new PracticeFormPage(getDriver());
         practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, phoneNumberValue, subjectsValue, genderValue,
                 hobbyValue, uploadValue, currentAddressValue, stateValue,cityValue);
 
