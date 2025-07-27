@@ -1,6 +1,5 @@
 package helperMethods;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 public class ElementHelper {
-    public WebDriver driver;
+    private WebDriver driver;
 
     public ElementHelper(WebDriver driver) {
         this.driver = driver;
