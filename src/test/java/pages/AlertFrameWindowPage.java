@@ -1,5 +1,6 @@
 package pages;
 
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,7 @@ public class AlertFrameWindowPage extends BasePage{
     public void interactWithAlertsSubMenu(){
 
         elementHelper.clickJSElement(alertsElement);
+        LoggerUtility.infoLog("The user clicks on Alerts Sub Menu");
     }
     public void interactWithFramesSubMenu(){
 
