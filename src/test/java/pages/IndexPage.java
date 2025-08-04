@@ -26,9 +26,13 @@ public class IndexPage extends BasePage{
     }
     public void interactWithElementsMenu(){
         elementHelper.clickElement(elementsMenu);
+
+        LoggerUtility.infoLog("The user clicks on Elements Menu");
     }
 
     public void interactWithFormsMenu(){
         elementHelper.clickElement(formsMenu);
+
+        LoggerUtility.infoLog("The user clicks on Forms Menu");
     }
 }

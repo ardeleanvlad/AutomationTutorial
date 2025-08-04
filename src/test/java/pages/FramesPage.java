@@ -1,5 +1,6 @@
 package pages;
 
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,12 +19,15 @@ public FramesPage(WebDriver driver){
 
 public void dealWithBigIFrame(){
     frameHelper.switchFrameByElement(driver.findElement(By.xpath("//iframe[@id='frame1']")));
+    LoggerUtility.infoLog("The user switches to specific frame");
     elementHelper.printTextElement(firstBlockElement);
     frameHelper.switchToParent();
+    LoggerUtility.infoLog("The user switches to parent frame");
 }
 
 public void dealWithLittleIFrame(){
     frameHelper.switchFrameByString("frame2");
+    LoggerUtility.infoLog("The user switches to specific frame");
     elementHelper.printTextElement(secondBlockElement);
 }
 }
