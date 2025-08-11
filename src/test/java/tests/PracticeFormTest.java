@@ -6,6 +6,7 @@ import pages.FormsPage;
 import pages.IndexPage;
 import pages.PracticeFormPage;
 import sharedData.SharedData;
+import suite.Suite;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class PracticeFormTest extends SharedData {
 
 
-    @Test
+    @Test(groups = {Suite.REGRESSION_SUITE , Suite.FORM_SUITE})
     public void TestMethod() {
 
         IndexPage indexPage = new IndexPage(getDriver());
