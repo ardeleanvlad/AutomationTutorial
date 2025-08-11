@@ -28,12 +28,15 @@ public class EdgeBrowser implements BrowserInterface{
 
     @Override
     public void configBrowser() {
+        boolean cicd = Boolean.parseBoolean(System.getProperty("cicd"));
         edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("window-size=1680,1050");
         edgeOptions.addArguments("--disable-gpu");
         edgeOptions.addArguments("--disable-infobars");
         edgeOptions.addArguments("disable-extensions");
-       // edgeOptions.addArguments("--headless=new");
+        if (cicd){
+            edgeOptions.addArguments("--headless=new");
+        }
         edgeOptions.addArguments("--incognito");
     }
 
